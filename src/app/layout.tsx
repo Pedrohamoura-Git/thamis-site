@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Prompt, Noto_Sans } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/navbar";
+import { FloatingNavbar } from "@/components/FloatingNavbar";
+import { Logo } from "../widgets/logo";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,7 +40,29 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${prompt.variable} ${notoSans.variable} antialiased`}
       >
-        {/* <Navbar /> */}
+        <FloatingNavbar
+          navItems={[
+            {
+              name: "",
+              link: "/",
+              icon: <Logo width={40} height={40} />,
+            },
+            {
+              name: "Home",
+              link: "/",
+            },
+            {
+              name: "About",
+              link: "/about",
+            },
+            {
+              name: "Contact",
+              link: "/contact",
+            },
+          ]}
+          isVisibleAtTop
+          className="max-w-11/12 w-11/12 top-4 md:top-10 flex gap-6 justify-around"
+        />
         {children}
       </body>
     </html>
