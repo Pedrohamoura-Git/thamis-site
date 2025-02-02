@@ -108,13 +108,13 @@ body {
     font-weight: 800;
   }
 
-  .font-prompt-regular {
-    font-family: "Prompt";
-    font-weight: 400;
+  .font-prompt {
+    font-family: var(--font-prompt), sans-serif;
+    font-weight: 700;
   }
 
-  .font-prompt-bold {
-    font-family: "Prompt";
-    font-weight: 700;
+  .font-noto-sans {
+    font-family: var(--font-noto-sans), sans-serif;
+    font-weight: 400;
   }
 }
