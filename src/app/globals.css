@@ -47,6 +47,8 @@ body {
     --accent-foreground: 217 95% 30%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
+    --btn-primary: 178, 78%, 36%;
+    --btn-secondary: 104, 60%, 65%;
     --border: 0 0% 89.8%;
     --input: 0 0% 89.8%;
     --ring: 0 0% 3.9%;
@@ -74,6 +76,8 @@ body {
     --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
+    --btn-primary: 178, 78%, 36%;
+    --btn-secondary: 104, 60%, 65%;
     --border: 0 0% 14.9%;
     --input: 0 0% 14.9%;
     --ring: 0 0% 83.1%;
@@ -116,5 +120,60 @@ body {
   .font-noto-sans {
     font-family: var(--font-noto-sans), sans-serif;
     font-weight: 400;
+  }
+
+  .bg-btn-custom {
+    position: relative;
+    overflow: hidden;
+    background-image: linear-gradient(
+      241deg,
+      hsl(var(--btn-secondary)) 0%,
+      hsl(var(--btn-primary)) 100%
+    );
+    transition: background-color 0.5s ease-in-out;
+  }
+
+  .bg-btn-custom {
+    position: relative;
+    overflow: hidden;
+    background-image: linear-gradient(
+      241deg,
+      hsl(var(--btn-secondary)) 0%,
+      hsl(var(--btn-primary)) 100%
+    );
+    transition: background-color 0.5s ease-in-out;
+    color: white;
+    z-index: 1;
+  }
+
+  .bg-btn-custom::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: hsl(var(--btn-primary));
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    z-index: -1;
+  }
+
+  .bg-btn-custom:hover::after {
+    opacity: 1;
+  }
+
+  .animate-pulse-custom {
+    box-shadow: 0 0 0 0 hsla(var(--btn-primary), 0.5);
+    animation: pulse 2s ease infinite;
+  }
+
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 hsla(var(--btn-primary), 0.6);
+    }
+    70% {
+      box-shadow: 0 0 0 0.7rem hsla(var(--btn-primary), 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 hsla(var(--btn-primary), 0);
+    }
   }
 }
