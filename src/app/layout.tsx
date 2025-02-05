@@ -53,7 +53,7 @@ export default function RootLayout({
             },
             {
               name: "About",
-              link: "/about",
+              link: "#about",
             },
             {
               name: "Contact",
