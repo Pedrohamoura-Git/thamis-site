@@ -4,21 +4,25 @@ export const About = () => {
   return (
     <section
       id="about"
-      className="flex flex-col items-center md:flex-row w-full px-8"
+      className="flex w-full flex-col items-center px-8 md:flex-row md:items-start md:justify-center md:gap-10 lg:gap-14"
     >
       <Image
         src="/profile.webp"
         alt=""
         width={380}
         height={380}
-        className="rounded-3xl"
+        className="rounded-3xl md:h-72 md:w-72 lg:h-96 lg:w-96"
       />
 
-      <div className="py-7 text-left">
-        <h2 className="text-primary text-4xl font-bold">Thamis Maciel Moura</h2>
-        <h3 className="text-foreground text-lg">Nutricionista CRN 3-66118</h3>
+      <div className="mt-7 px-2 text-left md:mt-0 lg:min-w-[450px]">
+        <h2 className="text-[1.9rem] font-bold text-primary md:text-[2.1rem] lg:text-[2.5rem]">
+          Thamis Maciel Moura
+        </h2>
+        <h3 className="text-lg text-foreground lg:pt-2 lg:text-xl">
+          Nutricionista CRN 3-66118
+        </h3>
 
-        <p className="text-primary text-[.95rem] font-inter mt-4">
+        <p className="font-inter mt-4 text-[.95rem] text-primary lg:text-lg">
           Nutricionista especialista em Saúde da Família pela Escola de Saúde
           Pública da Bahia e Secretaria de Saúde da Bahia.
           <br />
