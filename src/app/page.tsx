@@ -1,13 +1,14 @@
-import { About, Hero } from "@/components";
+import { About, Footer, Hero, Plans } from "@/components/sections";
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center mt-24 w-100vw">
-      <main className="flex flex-col gap-8 row-start-2 w-full">
+    <div className="w-100vw mt-24 flex flex-col items-center">
+      <main className="row-start-2 flex w-full flex-col gap-8">
         <Hero />
         <About />
+        <Plans />
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center"></footer>
+      <Footer />
     </div>
   );
 }
