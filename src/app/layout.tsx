@@ -1,28 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Prompt, Noto_Sans } from "next/font/google";
+import { Work_Sans, Noto_Sans, Inter } from "next/font/google";
 import "./globals.css";
-import { FloatingNavbar } from "@/components/FloatingNavbar";
+import { FloatingNavbar } from "@/components";
 import { Logo } from "../widgets/logo";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const prompt = Prompt({
+const workdSans = Work_Sans({
   subsets: ["latin"],
   weight: ["400", "700"],
-  variable: "--font-prompt",
 });
 
-const notoSans = Noto_Sans({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-noto-sans",
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
@@ -38,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${prompt.variable} ${notoSans.variable} antialiased`}
+        className={`${inter.className} ${workdSans.className} antialiased scroll-smooth`}
       >
         <FloatingNavbar
           navItems={[
@@ -61,7 +50,7 @@ export default function RootLayout({
             },
           ]}
           isVisibleAtTop
-          className="max-w-11/12 w-11/12 top-4 md:top-10 flex gap-6 justify-around"
+          className="max-w-11/12 top-4 flex w-11/12 justify-around gap-6 md:top-10"
         />
         {children}
       </body>
