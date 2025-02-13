@@ -1,10 +1,9 @@
-import React from "react";
-import { Button } from "../../ui/shadcn/button";
 import Image from "next/image";
+import { Button } from "@/components/ui";
 
 export const Hero = () => {
   return (
-    <section className="my-5 flex w-full flex-col items-center md:max-h-[300px] md:flex-row md:overflow-hidden">
+    <section className="z-10 mb-5 flex w-full flex-col items-center md:max-h-[300px] md:flex-row md:overflow-hidden">
       <div className="glossy-effect-custom relative z-50 w-full overflow-hidden before:h-full before:w-[200%] md:h-full md:before:h-[200%] md:before:w-full">
         <Image
           // src="/home.jpg"
@@ -24,7 +23,7 @@ export const Hero = () => {
               <h2>CRN3 66118</h2>
             </header> */}
 
-            <h1 className="font-prompt w-96 text-left text-4xl text-primary-foreground md:text-4xl">
+            <h1 className="font-prompt w-96 text-left text-4xl text-foreground md:text-4xl">
               Sua jornada para uma vida mais saudável começa aqui!
             </h1>
 
