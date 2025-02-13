@@ -3,9 +3,10 @@
 import { Tabs } from "@/components/ui";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { Cta } from "../cta";
 function TabsContent() {
   const commonClass =
-    "relative h-full w-full overflow-hidden rounded-2xl bg-gradient-to-br from-accent to-accent-foreground p-8 text-xl font-bold text-white md:p-10 md:text-4xl";
+    "relative h-full w-full overflow-hidden rounded-2xl bg-gradient-to-br from-accent to-accent-foreground p-8 text-xl font-bold md:p-10 md:text-4xl";
   const tabs = [
     {
       title: "Consulta mensal",
@@ -118,7 +119,7 @@ function TabsContent() {
   ];
 
   return (
-    <div className="relative mx-auto my-20 flex h-96 w-full max-w-5xl flex-col items-start justify-start [perspective:1000px] md:h-[40rem] lg:my-40">
+    <div className="relative mx-auto mt-40 flex h-96 w-full flex-col items-start justify-start [perspective:1000px] md:h-[40rem] lg:my-40">
       <Tabs tabs={tabs} />
     </div>
   );
@@ -138,8 +139,12 @@ const DummyContent = ({ imgSrc }: { imgSrc: string }) => {
 
 export const Plans = () => {
   return (
-    <section id="plans" className="p-4">
-      <TabsContent />
+    <section id="plans" className="relative mt-20 w-full bg-foreground">
+      <Cta className="absolute -top-48 left-1/2 -translate-x-1/2" />
+
+      <div className="mx-auto mt-24 max-w-md p-4 pb-40 md:max-w-screen-sm">
+        <TabsContent />
+      </div>
     </section>
   );
 };
