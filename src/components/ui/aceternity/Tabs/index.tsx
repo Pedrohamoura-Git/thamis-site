@@ -40,7 +40,7 @@ export const Tabs = ({
     <>
       <div
         className={cn(
-          "flex flex-row h-16 items-center justify-start [perspective:1000px] relative overflow-auto no-visible-scrollbar max-w-full w-full",
+          "flex flex-row h-16 md:h-24 items-center justify-start [perspective:1000px] relative overflow-auto no-visible-scrollbar max-w-full w-full",
           containerClassName
         )}
       >
@@ -65,13 +65,17 @@ export const Tabs = ({
                 layoutId="clickedbutton"
                 transition={{ type: "spring", bounce: 0.3, duration: 0.6 }}
                 className={cn(
-                  "absolute inset-0 bg-gray-200 dark:bg-zinc-800 rounded-full",
+                  "absolute inset-0 border border-accent rounded-full",
                   activeTabClassName
                 )}
               />
             )}
 
-            <span className="relative block w-max text-primary">
+            <span
+              className={`relative block w-max text-primary hover:text-accent ${
+                active.value === tab.value && "text-accent"
+              }`}
+            >
               {tab.title}
             </span>
           </button>

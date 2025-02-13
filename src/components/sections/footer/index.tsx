@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export const Footer = () => {
   return (
-    <footer className="mt-20 flex w-full flex-col justify-center gap-7 bg-muted p-10 text-sm text-foreground md:flex-row md:gap-10 md:px-2 lg:gap-20 lg:p-14">
+    <footer className="flex w-full flex-col justify-center gap-7 bg-muted p-7 text-sm text-foreground md:flex-row md:gap-10 md:p-10 md:px-2 lg:gap-20 lg:p-14">
       <div className="flex items-center gap-5 md:columns-1 md:flex-col md:text-center">
         <Logo width={80} height={80} fill="white" className="md:h-16 md:w-16" />
 
@@ -59,7 +59,7 @@ export const Footer = () => {
         <p>thamismoura@gmail.com</p>
 
         <Button
-          className="bg-btn-custom font-noto-sans animate-pulse-custom mt-4 w-48"
+          className="bg-btn-custom font-noto-sans animate-pulse-custom mt-8 w-48"
           variant="accent-foreground"
           size="lg"
         >

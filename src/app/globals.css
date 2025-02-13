@@ -168,8 +168,8 @@ body {
   .card-background {
     background-image: linear-gradient(
       180deg,
-      hsl(var(--card)) 0%,
-      hsl(var(--card-foreground)) 100%
+      hsl(var(--card-foreground)) 0%,
+      hsl(var(--card)) 100%
     );
   }
 }
