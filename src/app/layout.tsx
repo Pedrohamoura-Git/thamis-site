@@ -3,6 +3,7 @@ import { Work_Sans, Noto_Sans, Inter } from "next/font/google";
 import "./globals.css";
 import { FloatingNavbar } from "@/components";
 import { Logo } from "../widgets/logo";
+import { Navbar } from "@/components";
 
 const workdSans = Work_Sans({
   subsets: ["latin"],
@@ -27,9 +28,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} ${workdSans.className} antialiased scroll-smooth`}
+        className={`${inter.className} ${workdSans.className} antialiased scroll-smooth bg-foreground`}
       >
-        <FloatingNavbar
+        <Navbar />
+
+        {/* <FloatingNavbar
           navItems={[
             {
               name: "",
@@ -50,8 +53,8 @@ export default function RootLayout({
             },
           ]}
           isVisibleAtTop
-          className="max-w-11/12 top-4 flex w-11/12 justify-around gap-6 md:top-10"
-        />
+          className="top-4 flex w-11/12 max-w-md justify-around gap-6 md:top-10"
+        /> */}
         {children}
       </body>
     </html>

@@ -3,3 +3,4 @@ export { About } from "./about";
 export { Plans } from "./plans";
 export { Footer } from "./footer";
 export { Cta } from "./cta";
+export { Navbar } from "./navbar";
