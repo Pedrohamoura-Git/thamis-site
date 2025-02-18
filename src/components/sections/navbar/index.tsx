@@ -27,22 +27,21 @@ export const Navbar = () => {
   return (
     <nav
       className={`fixed w-full z-50 transition-all duration-400 ease-in-out ${
-        // isScrolled ? "bg-foreground py-0" : "bg-transparent py-8"
-        isScrolled ? "bg-primary" : "bg-accent"
+        isScrolled ? "bg-primary" : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-6 py-3 md:flex md:items-center md:justify-between md:p-2">
         <div className="flex items-center justify-between">
-          <div className="logo">
+          <Link href="#home" className="logo">
             <Logo
               width={40}
               height={40}
               fill="white"
               className={`${
-                isScrolled ? "h-12 w-12" : "h-32 w-32"
+                isScrolled ? "h-12 w-12" : "h-20 w-20 md:h-32 md:w-32"
               } transition-all ease-linear`}
             />
-          </div>
+          </Link>
 
           <button
             className="navTrigger block cursor-pointer md:hidden"
