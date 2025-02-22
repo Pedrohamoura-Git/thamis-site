@@ -3,6 +3,7 @@ import Image from "next/image";
 import React, { useEffect, useId, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useOutsideClick } from "@/hooks";
+import { BentoGridItem } from "../bentoGrid";
 
 export const ExpandableCard = () => {
   const [active, setActive] = useState<(typeof cards)[number] | boolean | null>(
@@ -32,6 +33,7 @@ export const ExpandableCard = () => {
 
   return (
     <>
+      {/* Glossy effect */}
       <AnimatePresence>
         {active && typeof active === "object" && (
           <motion.div
@@ -42,6 +44,8 @@ export const ExpandableCard = () => {
           />
         )}
       </AnimatePresence>
+
+      {/* Dialog */}
       <AnimatePresence>
         {active && typeof active === "object" ? (
           <div className="fixed inset-0 z-[100] grid place-items-center">
@@ -128,29 +132,31 @@ export const ExpandableCard = () => {
           </div>
         ) : null}
       </AnimatePresence>
+
+      {/* Not active cards */}
       <ul className="w-full gap-4 lg:max-w-4xl">
         {cards.map((card) => (
           <motion.li
             layoutId={`card-${card.title}-${id}`}
             key={`card-${card.title}-${id}`}
             onClick={() => setActive(card)}
-            className="mb-3 flex cursor-pointer flex-col items-center justify-between rounded-xl p-4 hover:bg-foreground md:flex-row"
+            className="mb-3 cursor-pointer rounded-xl p-4 hover:bg-foreground md:flex-row"
           >
-            <div className="flex w-full flex-row items-center justify-around gap-2">
+            <motion.div className="group/bento row-span-1 flex h-40 w-full flex-row items-center justify-between rounded-xl border border-transparent bg-foreground p-1 shadow-xl transition duration-200 dark:border-white/[0.2] dark:bg-black md:p-4">
               <motion.div layoutId={`image-${card.title}-${id}`}>
                 <Image
                   width={100}
                   height={100}
                   src={card.src}
                   alt={card.title}
-                  className="h-20 w-20 rounded-lg object-cover object-top md:h-14 md:w-14"
+                  className="h-36 w-40 rounded-lg object-cover object-top md:h-14 md:w-14"
                 />
               </motion.div>
 
-              <div>
+              <motion.div className="mx-auto flex flex-col justify-center transition duration-200 group-hover/bento:translate-x-2">
                 <motion.h3
                   layoutId={`title-${card.title}-${id}`}
-                  className="max-w-48 text-center text-lg font-bold capitalize text-primary md:text-left md:text-xl"
+                  className="max-w-52 text-center text-lg font-bold capitalize text-primary md:text-left md:text-xl"
                 >
                   {card.title}
                 </motion.h3>
@@ -160,14 +166,15 @@ export const ExpandableCard = () => {
                 >
                   {card.description}
                 </motion.p>
-              </div>
-              {/* <motion.button
-                layoutId={`button-${card.title}-${id}`}
-                className="mt-4 rounded-full bg-accent px-4 py-2 text-sm font-bold text-foreground hover:bg-accent hover:text-white md:mt-0"
-              >
-                {card.ctaText}
-              </motion.button> */}
-            </div>
+
+                {/* <motion.button
+                  layoutId={`button-${card.title}-${id}`}
+                  className="mx-auto mt-4 rounded-full bg-accent px-4 py-2 text-sm font-bold text-foreground hover:bg-accent hover:text-white md:mt-0"
+                >
+                  {card.ctaText}
+                </motion.button> */}
+              </motion.div>
+            </motion.div>
           </motion.li>
         ))}
       </ul>
@@ -211,9 +218,9 @@ export const CloseIcon = () => {
 const cards = [
   {
     // description: "",
-    description: "Investimento: R$ 210,00",
+    description: "R$ 210,00",
     title: "Consulta mensal",
-    src: "https://assets.aceternity.com/demos/lana-del-rey.jpeg",
+    src: "/home.jpg",
     ctaText: "Saiba mais",
     ctaLink: "https://ui.aceternity.com/templates",
     content: () => {
@@ -224,16 +231,16 @@ const cards = [
           outros materiais e apoio via whatsapp 1 vez no mês.
           {/* <br />
           <br />
-          Investimento: R$ 210,00 */}
+          R$ 210,00 */}
         </p>
       );
     },
   },
   {
     // description: "",
-    description: "Investimento: R$ 630,00",
+    description: "R$ 630,00",
     title: "Consulta trimestral",
-    src: "https://assets.aceternity.com/demos/babbu-maan.jpeg",
+    src: "/home.jpg",
     ctaText: "Saiba mais",
     ctaLink: "https://ui.aceternity.com/templates",
     content: () => {
@@ -244,7 +251,7 @@ const cards = [
           receitas e outros materiais e apoio via whatsapp quinzenal.‌
           {/* <br />
           <br />
-          Investimento: R$ 630,00 */}
+          R$ 630,00 */}
         </p>
       );
     },
@@ -252,9 +259,9 @@ const cards = [
 
   {
     // description: "",
-    description: "‌Investimento: R$ 115,50",
+    description: "‌R$ 115,50",
     title: "Orientação nutricional",
-    src: "https://assets.aceternity.com/demos/metallica.jpeg",
+    src: "/home.jpg",
     ctaText: "Saiba mais",
     ctaLink: "https://ui.aceternity.com/templates",
     content: () => {
@@ -263,16 +270,16 @@ const cards = [
           Investir em sua saúde é o melhor presente que você pode se dar!
           {/* <br />
           <br />
-          ‌Investimento: R$ 115,50{" "} */}
+          ‌R$ 115,50{" "} */}
         </p>
       );
     },
   },
   {
     // description: "",
-    description: "Investimento: R$ 262,50",
+    description: "R$ 262,50",
     title: "Plano alimentar semanal",
-    src: "https://assets.aceternity.com/demos/led-zeppelin.jpeg",
+    src: "/home.jpg",
     ctaText: "Saiba mais",
     ctaLink: "https://ui.aceternity.com/templates",
     content: () => {
@@ -283,16 +290,16 @@ const cards = [
           refeição.
           {/* <br />
           <br />
-          Investimento: R$ 262,50 */}
+          R$ 262,50 */}
         </p>
       );
     },
   },
   {
     // description: "",
-    description: "‌‌‌‌‌Investimento: R$105,00",
+    description: "‌‌‌‌‌R$ 105,00",
     title: "Bioimpedância",
-    src: "https://assets.aceternity.com/demos/toh-phir-aao.jpeg",
+    src: "/home.jpg",
     ctaText: "Saiba mais",
     ctaLink: "https://ui.aceternity.com/templates",
     content: () => {
@@ -303,16 +310,16 @@ const cards = [
           gordura, massa magra e outros.
           {/* <br />
           <br />
-          ‌‌‌‌‌Investimento: R$105,00 */}
+          ‌‌‌‌‌R$ 105,00 */}
         </p>
       );
     },
   },
   {
     // description: "",
-    description: "‌‌‌‌‌Investimento: R$315,00",
+    description: "‌‌‌‌‌R$ 315,00",
     title: "Lista de compras",
-    src: "https://assets.aceternity.com/demos/toh-phir-aao.jpeg",
+    src: "/home.jpg",
     ctaText: "Saiba mais",
     ctaLink: "https://ui.aceternity.com/templates",
     content: () => {
@@ -322,16 +329,16 @@ const cards = [
           te ajuda a manter uma alimentação saudável e balanceada.
           {/* <br />
           <br />
-          ‌‌‌‌‌Investimento: R$315,00 */}
+          ‌‌‌‌‌R$ 315,00 */}
         </p>
       );
     },
   },
   {
     // description: "",
-    description: "‌‌‌‌‌Investimento: R$50,00",
+    description: "‌‌‌‌‌R$ 50,00",
     title: "Consulta social",
-    src: "https://assets.aceternity.com/demos/toh-phir-aao.jpeg",
+    src: "/home.jpg",
     ctaText: "Saiba mais",
     ctaLink: "https://ui.aceternity.com/templates",
     content: () => {
@@ -346,7 +353,7 @@ const cards = [
           ético e inclusivo para a comunidade.
           {/* <br />
           <br />
-          ‌‌‌‌‌Investimento: R$50,00 */}
+          ‌‌‌‌‌R$ 50,00 */}
         </p>
       );
     },
