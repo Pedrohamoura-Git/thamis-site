@@ -1,14 +1,25 @@
 "use client";
 import Image from "next/image";
-import React, { useEffect, useId, useRef, useState } from "react";
+import React, { JSX, useEffect, useId, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useOutsideClick } from "@/hooks";
-import { BentoGridItem } from "../bentoGrid";
+import { Button } from "../../shadcn";
 
-export const ExpandableCard = () => {
-  const [active, setActive] = useState<(typeof cards)[number] | boolean | null>(
-    null
-  );
+type ExpandableCardProps = {
+  cardsContent: {
+    description: string;
+    title: string;
+    src: string;
+    ctaText: string;
+    whatsAppMessage: string;
+    content: () => JSX.Element;
+  }[];
+};
+
+export const ExpandableCard = ({ cardsContent }: ExpandableCardProps) => {
+  const [active, setActive] = useState<
+    (typeof cardsContent)[number] | boolean | null
+  >(null);
   const ref = useRef<HTMLDivElement>(null);
   const id = useId();
 
@@ -75,13 +86,14 @@ export const ExpandableCard = () => {
             <motion.div
               layoutId={`card-${active.title}-${id}`}
               ref={ref}
-              className="flex h-fit w-11/12 max-w-[500px] flex-col overflow-hidden bg-foreground dark:bg-neutral-900 sm:rounded-3xl md:h-fit md:max-h-[90%]"
+              className="flex h-fit w-11/12 max-w-[500px] flex-col overflow-hidden rounded-lg bg-foreground dark:bg-neutral-900 sm:rounded-3xl md:h-fit md:max-h-[90%]"
             >
               <motion.div layoutId={`image-${active.title}-${id}`}>
                 <Image
                   priority
-                  width={200}
-                  height={200}
+                  quality={100}
+                  width={500}
+                  height={500}
                   src={active.src}
                   alt={active.title}
                   className="h-72 w-full object-cover object-top sm:rounded-tl-lg sm:rounded-tr-lg lg:h-80"
@@ -93,7 +105,7 @@ export const ExpandableCard = () => {
                   <div className="">
                     <motion.h3
                       layoutId={`title-${active.title}-${id}`}
-                      className="font-bold capitalize text-neutral-700 dark:text-neutral-200"
+                      className="font-bold capitalize text-neutral-700 dark:text-neutral-200 md:text-2xl"
                     >
                       {active.title}
                     </motion.h3>
@@ -105,22 +117,22 @@ export const ExpandableCard = () => {
                     </motion.p>
                   </div>
 
-                  <motion.a
-                    layoutId={`button-${active.title}-${id}`}
-                    href={active.ctaLink}
-                    target="_blank"
-                    className="hover:animate-pulse-custom rounded-full bg-accent-foreground px-3 py-3 text-sm font-bold text-foreground"
+                  <Button
+                    variant="accent-foreground"
+                    className="hover:animate-pulse-custom rounded-xl bg-accent-foreground px-3 py-3 text-sm font-bold text-foreground hover:bg-accent-foreground"
+                    message={active.whatsAppMessage}
+                    size="md"
                   >
                     Agendar consulta
-                  </motion.a>
+                  </Button>
                 </div>
-                <div className="relative px-4 pt-4">
+                <div className="relative">
                   <motion.div
                     layout
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="flex h-52 flex-col items-start overflow-auto pb-10 text-sm/6 text-primary [-ms-overflow-style:scroll] [-webkit-overflow-scrolling:touch] [mask:linear-gradient(to_bottom,white,white,transparent)] md:h-fit md:text-sm lg:text-base"
+                    className="flex h-64 flex-col items-start overflow-auto p-4 text-sm/6 text-primary [-ms-overflow-style:scroll] [-webkit-overflow-scrolling:touch] md:text-base"
                   >
                     {typeof active.content === "function"
                       ? active.content()
@@ -134,45 +146,38 @@ export const ExpandableCard = () => {
       </AnimatePresence>
 
       {/* Not active cards */}
-      <ul className="w-full gap-4 lg:max-w-4xl">
-        {cards.map((card) => (
+      <ul className="mx-auto flex w-full flex-col gap-6 p-4 md:grid md:grid-cols-2 lg:max-w-4xl lg:pt-16 xl:max-w-5xl">
+        {cardsContent.map((card) => (
           <motion.li
             layoutId={`card-${card.title}-${id}`}
             key={`card-${card.title}-${id}`}
             onClick={() => setActive(card)}
-            className="mb-3 cursor-pointer rounded-xl p-4 hover:bg-foreground md:flex-row"
+            className="cursor-pointer rounded-xl hover:bg-foreground"
           >
-            <motion.div className="group/bento row-span-1 flex h-40 w-full flex-row items-center justify-between rounded-xl border border-transparent bg-foreground p-1 shadow-xl transition duration-200 dark:border-white/[0.2] dark:bg-black md:p-4">
+            <motion.div className="group/bento row-span-1 flex h-40 w-full flex-row items-center justify-between rounded-xl border border-transparent bg-foreground p-1 shadow-xl transition duration-200 dark:border-white/[0.2] dark:bg-black md:px-2">
               <motion.div layoutId={`image-${card.title}-${id}`}>
                 <Image
-                  width={100}
-                  height={100}
+                  width={200}
+                  height={200}
                   src={card.src}
                   alt={card.title}
-                  className="h-36 w-40 rounded-lg object-cover object-top md:h-14 md:w-14"
+                  className="h-36 w-40 rounded-lg object-cover object-top md:h-36 md:w-36"
                 />
               </motion.div>
 
               <motion.div className="mx-auto flex flex-col justify-center transition duration-200 group-hover/bento:translate-x-2">
                 <motion.h3
                   layoutId={`title-${card.title}-${id}`}
-                  className="max-w-52 text-center text-lg font-bold capitalize text-primary md:text-left md:text-xl"
+                  className="max-w-52 text-center text-lg font-bold capitalize text-primary md:max-w-60 lg:text-xl"
                 >
                   {card.title}
                 </motion.h3>
                 <motion.p
                   layoutId={`description-${card.description}-${id}`}
-                  className="text-center text-primary md:text-left md:text-lg"
+                  className="text-center text-primary md:text-lg"
                 >
                   {card.description}
                 </motion.p>
-
-                {/* <motion.button
-                  layoutId={`button-${card.title}-${id}`}
-                  className="mx-auto mt-4 rounded-full bg-accent px-4 py-2 text-sm font-bold text-foreground hover:bg-accent hover:text-white md:mt-0"
-                >
-                  {card.ctaText}
-                </motion.button> */}
               </motion.div>
             </motion.div>
           </motion.li>
@@ -214,148 +219,3 @@ export const CloseIcon = () => {
     </motion.svg>
   );
 };
-
-const cards = [
-  {
-    // description: "",
-    description: "R$ 210,00",
-    title: "Consulta mensal",
-    src: "/home.jpg",
-    ctaText: "Saiba mais",
-    ctaLink: "https://ui.aceternity.com/templates",
-    content: () => {
-      return (
-        <p>
-          Avaliação completa, avaliação de exames, suplementação de vitaminas e
-          fitoterápicos se necessário, plano alimentar, ebook de receitas e
-          outros materiais e apoio via whatsapp 1 vez no mês.
-          {/* <br />
-          <br />
-          R$ 210,00 */}
-        </p>
-      );
-    },
-  },
-  {
-    // description: "",
-    description: "R$ 630,00",
-    title: "Consulta trimestral",
-    src: "/home.jpg",
-    ctaText: "Saiba mais",
-    ctaLink: "https://ui.aceternity.com/templates",
-    content: () => {
-      return (
-        <p>
-          3 consultas + avaliação completa, avaliação de exames, suplementação
-          de vitaminas e fitoterápicos se necessário, plano alimentar, ebook de
-          receitas e outros materiais e apoio via whatsapp quinzenal.‌
-          {/* <br />
-          <br />
-          R$ 630,00 */}
-        </p>
-      );
-    },
-  },
-
-  {
-    // description: "",
-    description: "‌R$ 115,50",
-    title: "Orientação nutricional",
-    src: "/home.jpg",
-    ctaText: "Saiba mais",
-    ctaLink: "https://ui.aceternity.com/templates",
-    content: () => {
-      return (
-        <p>
-          Investir em sua saúde é o melhor presente que você pode se dar!
-          {/* <br />
-          <br />
-          ‌R$ 115,50{" "} */}
-        </p>
-      );
-    },
-  },
-  {
-    // description: "",
-    description: "R$ 262,50",
-    title: "Plano alimentar semanal",
-    src: "/home.jpg",
-    ctaText: "Saiba mais",
-    ctaLink: "https://ui.aceternity.com/templates",
-    content: () => {
-      return (
-        <p>
-          (emagrecimento, ganho de massa, diabetes, hipertensão, colesterol
-          alto, constipação e etc). Contendo 3 opções de refeições por cada
-          refeição.
-          {/* <br />
-          <br />
-          R$ 262,50 */}
-        </p>
-      );
-    },
-  },
-  {
-    // description: "",
-    description: "‌‌‌‌‌R$ 105,00",
-    title: "Bioimpedância",
-    src: "/home.jpg",
-    ctaText: "Saiba mais",
-    ctaLink: "https://ui.aceternity.com/templates",
-    content: () => {
-      return (
-        <p>
-          exame realizado em consultório, com balança de última geração
-          (MEDIANA) com avaliação de parâmetros antropométricos, percentual de
-          gordura, massa magra e outros.
-          {/* <br />
-          <br />
-          ‌‌‌‌‌R$ 105,00 */}
-        </p>
-      );
-    },
-  },
-  {
-    // description: "",
-    description: "‌‌‌‌‌R$ 315,00",
-    title: "Lista de compras",
-    src: "/home.jpg",
-    ctaText: "Saiba mais",
-    ctaLink: "https://ui.aceternity.com/templates",
-    content: () => {
-      return (
-        <p>
-          Diga adeus às listas perdidas e às compras por impulso. Esse serviço
-          te ajuda a manter uma alimentação saudável e balanceada.
-          {/* <br />
-          <br />
-          ‌‌‌‌‌R$ 315,00 */}
-        </p>
-      );
-    },
-  },
-  {
-    // description: "",
-    description: "‌‌‌‌‌R$ 50,00",
-    title: "Consulta social",
-    src: "/home.jpg",
-    ctaText: "Saiba mais",
-    ctaLink: "https://ui.aceternity.com/templates",
-    content: () => {
-      return (
-        <p>
-          Ofereço atendimento nutricional com valor reduzido para tornar o
-          serviço acessível a pessoas em situação de vulnerabilidade econômica.
-          Essa iniciativa busca promover a saúde e a qualidade de vida,
-          fornecendo orientações para prevenir e tratar condições como
-          obesidade, diabetes e hipertensão. O valor social cobre os custos
-          mínimos, mantendo a qualidade do atendimento e garantindo um cuidado
-          ético e inclusivo para a comunidade.
-          {/* <br />
-          <br />
-          ‌‌‌‌‌R$ 50,00 */}
-        </p>
-      );
-    },
-  },
-];
