@@ -9,6 +9,7 @@ export default function Home() {
         <About />
         <Cta />
         <Plans />
+        <div className="parallax min-h-4 w-full" />
       </main>
       <Footer />
     </div>
