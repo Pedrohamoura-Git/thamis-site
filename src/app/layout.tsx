@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import { Work_Sans, Noto_Sans, Inter } from "next/font/google";
+import { Work_Sans, Inter } from "next/font/google";
 import "./globals.css";
-import { FloatingNavbar } from "@/components";
-import { Logo } from "../widgets/logo";
 import { Navbar } from "@/components";
 
 const workdSans = Work_Sans({

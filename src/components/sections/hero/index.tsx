@@ -1,8 +1,6 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useState } from "react";
-import { Arrow } from "@/widgets";
 import Link from "next/link";
 
 export const Hero = () => {
