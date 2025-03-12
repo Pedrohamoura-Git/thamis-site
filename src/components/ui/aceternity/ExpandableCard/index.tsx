@@ -146,7 +146,7 @@ export const ExpandableCard = ({ cardsContent }: ExpandableCardProps) => {
       </AnimatePresence>
 
       {/* Not active cards */}
-      <ul className="mx-auto flex w-full flex-col gap-6 p-4 md:grid md:grid-cols-2 lg:max-w-4xl lg:pt-16 xl:max-w-5xl">
+      <ul className="mx-auto flex w-full flex-col gap-6 md:grid md:grid-cols-2 lg:max-w-4xl lg:pt-16 xl:max-w-5xl">
         {cardsContent.map((card) => (
           <motion.li
             layoutId={`card-${card.title}-${id}`}
@@ -154,7 +154,7 @@ export const ExpandableCard = ({ cardsContent }: ExpandableCardProps) => {
             onClick={() => setActive(card)}
             className="cursor-pointer rounded-xl hover:bg-foreground"
           >
-            <motion.div className="group/bento row-span-1 flex h-40 w-full flex-row items-center justify-between rounded-xl border border-transparent bg-foreground p-1 shadow-xl transition duration-200 dark:border-white/[0.2] dark:bg-black md:px-2">
+            <motion.div className="group/bento row-span-1 flex h-40 w-full flex-row items-center justify-between rounded-xl border border-black/5 bg-foreground p-1 shadow-xl transition duration-200 dark:border-white/[0.2] dark:bg-black md:px-2">
               <motion.div layoutId={`image-${card.title}-${id}`}>
                 <Image
                   width={200}

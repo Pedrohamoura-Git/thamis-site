@@ -14,7 +14,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Home - Nutricionista | Thamis Moura",
+  title: "Nutricionista | Thamis Moura",
   description: "Site oficial da Nutricionista Thamis Maciel Moura",
 };
 
