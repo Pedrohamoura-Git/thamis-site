@@ -1,28 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 
 export const Hero = () => {
-  const [imageSrc, setImageSrc] = useState("/home-sm.jpg");
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth <= 768) {
-        setImageSrc("/home-sm.jpg");
-      } else if (window.innerWidth <= 1024) {
-        setImageSrc("/basil-herbs-green-mediterranean-40720.jpg");
-      } else {
-        setImageSrc("/home-2.jpg");
-      }
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   return (
     <section className="parallax z-10 flex min-h-screen w-full flex-col items-center md:flex-row md:overflow-hidden">
       <div className="parallax glossy-effect-custom relative z-50 h-full w-full overflow-hidden before:h-[200%] before:w-[200%] md:h-full">

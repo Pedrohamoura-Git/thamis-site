@@ -1,5 +1,3 @@
-import { cn } from "@/lib/utils";
-
 export const Apple = ({ className }: { className?: string }) => {
   return (
     <i>

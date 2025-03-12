@@ -2,7 +2,7 @@ import { Button } from "@/components/ui";
 import { cn } from "@/lib/utils";
 import { CalendarCheck2 } from "lucide-react";
 
-export const Cta = ({ className }: { className?: String }) => {
+export const Cta = ({ className }: { className?: string }) => {
   return (
     <section
       id="cta"

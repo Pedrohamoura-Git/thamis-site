@@ -1,13 +1,7 @@
 import { cn } from "@/lib/utils";
 import React from "react";
 
-export const Puzzle = ({
-  className,
-  fill,
-}: {
-  className?: string;
-  fill?: string;
-}) => {
+export const Puzzle = ({ className }: { className?: string }) => {
   return (
     <i>
       <svg
