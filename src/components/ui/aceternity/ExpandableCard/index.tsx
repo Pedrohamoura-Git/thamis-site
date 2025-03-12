@@ -146,7 +146,7 @@ export const ExpandableCard = ({ cardsContent }: ExpandableCardProps) => {
       </AnimatePresence>
 
       {/* Not active cards */}
-      <ul className="mx-auto flex w-full flex-col gap-6 md:grid md:grid-cols-2 lg:max-w-4xl lg:pt-16 xl:max-w-5xl">
+      <ul className="mx-auto flex w-full list-inside list-disc flex-col gap-2 md:grid md:grid-cols-2 lg:max-w-4xl lg:pt-16 xl:max-w-5xl">
         {cardsContent.map((card) => (
           <motion.li
             layoutId={`card-${card.title}-${id}`}
