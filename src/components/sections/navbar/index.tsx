@@ -16,7 +16,7 @@ export const Navbar = () => {
     {
       content: (
         <Instagram
-          className="mr-2"
+          className="mr-2 hidden md:block"
           width={30}
           height={30}
           fill={isScrolled ? "primary" : "background"}
@@ -25,19 +25,6 @@ export const Navbar = () => {
       href: "https://www.instagram.com/thamismmoura",
       blank: true,
     },
-
-    // <Link
-    //   className="mt-1 flex items-center"
-    //   href="https://www.instagram.com/thamismmoura"
-    //   target="_blank"
-    // >
-    //   <Instagram
-    //     className="mr-2"
-    //     width={30}
-    //     height={30}
-    //     fill={isScrolled ? "primary" : "background"}
-    //   />
-    // </Link>,
   ];
 
   useEffect(() => {
