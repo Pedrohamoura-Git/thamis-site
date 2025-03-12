@@ -1,6 +1,5 @@
 export const redirectToWhatsAppChat = ({
-  // whatsappNumber = "+5577988226386",
-  whatsappNumber = "+5577988137725",
+  whatsappNumber = "+5519991259896",
   message = "Olá! Tudo bem? Vim pelo seu site e gostaria de saber mais sobre os seus atendimentos.",
 }: {
   whatsappNumber?: string;
