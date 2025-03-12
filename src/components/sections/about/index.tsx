@@ -1,4 +1,3 @@
-import { Apple, ProfessionalHat, Puzzle } from "@/widgets";
 import Image from "next/image";
 
 export const About = () => {
@@ -13,6 +12,7 @@ export const About = () => {
           alt=""
           width={380}
           height={380}
+          quality={100}
           className="l :h-96 z-10 rounded-3xl md:h-[22rem] md:w-[22rem] lg:w-96"
         />
         <div className="mt-7 px-2 text-left md:z-10 md:mt-0 lg:min-w-[450px]">
