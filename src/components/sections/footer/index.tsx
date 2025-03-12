@@ -40,8 +40,8 @@ export const Footer = () => {
       <div>
         <h5 className="mb-2 text-base font-bold text-accent">Horários</h5>
 
-        <p>Segunda a sexta: 08h-18h</p>
-        <p>Sábado: 09h-12h</p>
+        <p>Segunda a sexta: 08h às 18h</p>
+        <p>Domingo: 14h às 18h</p>
 
         <h5 className="mb-2 mt-4 text-base font-bold text-accent">
           Atendimento online
@@ -53,31 +53,28 @@ export const Footer = () => {
       <div>
         <h5 className="mb-2 text-base font-bold text-accent">Contato</h5>
 
-        <Link
-          className="mt-1 flex items-center"
-          href="mailto:thamismoura@gmail.com"
-          target="_blank"
-        >
-          <Mail strokeWidth={1} className="mr-2" width={20} height={20} />
+        <div className="mt-1 flex items-center">
+          <Link href="mailto:thamismoura@gmail.com" target="_blank">
+            <Mail strokeWidth={1} className="mr-2" width={20} height={20} />
+          </Link>
           thamismoura@gmail.com
-        </Link>
-        <Link
-          className="mt-1 flex items-center"
-          href="https://www.instagram.com/thamismmoura"
-          target="_blank"
-        >
-          <Instagram className="mr-2" width={20} height={20} />
+        </div>
+        <div className="mt-1 flex items-center">
+          <Link href="https://www.instagram.com/thamismmoura" target="_blank">
+            <Instagram className="mr-2" width={20} height={20} />
+          </Link>
           @thamismmoura
-        </Link>
-        <Link
-          className="mt-1 flex items-center"
-          href=""
-          target="_blank"
-          onClick={() => redirectToWhatsAppChat({})}
-        >
-          <Whatsapp className="mr-2" width={20} height={20} />
+        </div>
+        <div className="mt-1 flex items-center">
+          <Link
+            href=""
+            target="_blank"
+            onClick={() => redirectToWhatsAppChat({})}
+          >
+            <Whatsapp className="mr-2" width={20} height={20} />
+          </Link>
           19 99125-9896
-        </Link>
+        </div>
 
         <Button
           className="bg-btn-custom font-noto-sans animate-pulse-custom mt-8 w-48"
