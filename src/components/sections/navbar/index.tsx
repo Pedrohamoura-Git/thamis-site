@@ -1,7 +1,7 @@
 "use client";
 import { useOutsideClick } from "@/hooks";
 import { cn } from "@/lib/utils";
-import { Logo } from "@/widgets";
+import { Instagram, Logo } from "@/widgets";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 
@@ -10,9 +10,34 @@ export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean | null>(false);
   const ref = useRef<HTMLDivElement>(null);
   const navList = [
-    { title: "Inicio", href: "#home" },
-    { title: "Sobre mim", href: "#about" },
-    { title: "Consultas", href: "#plans" },
+    { content: "Inicio", href: "#home" },
+    { content: "Sobre mim", href: "#about" },
+    { content: "Consultas", href: "#plans" },
+    {
+      content: (
+        <Instagram
+          className="mr-2"
+          width={30}
+          height={30}
+          fill={isScrolled ? "primary" : "background"}
+        />
+      ),
+      href: "https://www.instagram.com/thamismmoura",
+      blank: true,
+    },
+
+    // <Link
+    //   className="mt-1 flex items-center"
+    //   href="https://www.instagram.com/thamismmoura"
+    //   target="_blank"
+    // >
+    //   <Instagram
+    //     className="mr-2"
+    //     width={30}
+    //     height={30}
+    //     fill={isScrolled ? "primary" : "background"}
+    //   />
+    // </Link>,
   ];
 
   useEffect(() => {
@@ -58,32 +83,47 @@ export const Navbar = () => {
             />
           </Link>
 
-          <button
-            className="navTrigger block cursor-pointer md:hidden"
-            onClick={toggleMenu}
-          >
-            <i
-              className={cn(
-                "block w-8 h-1 rounded mb-1 transition-transform",
-                isMenuOpen ? "transform rotate-45 translate-y-2" : "",
-                isScrolled ? "bg-primary" : "bg-background"
-              )}
-            ></i>
-            <i
-              className={cn(
-                `block w-8 h-1 rounded mb-1 transition-opacity`,
-                isMenuOpen ? "opacity-0" : "",
-                isScrolled ? "bg-primary" : "bg-background"
-              )}
-            ></i>
-            <i
-              className={cn(
-                `block w-8 h-1 rounded transition-transform`,
-                isMenuOpen ? "transform -rotate-45 -translate-y-2" : "",
-                isScrolled ? "bg-primary" : "bg-background"
-              )}
-            ></i>
-          </button>
+          <div className="flex items-center gap-2 md:hidden">
+            <Link
+              className="mt-1 flex items-center"
+              href="https://www.instagram.com/thamismmoura"
+              target="_blank"
+            >
+              <Instagram
+                className="mr-2"
+                width={30}
+                height={30}
+                fill={isScrolled ? "primary" : "background"}
+              />
+            </Link>
+
+            <button
+              className="navTrigger block cursor-pointer"
+              onClick={toggleMenu}
+            >
+              <i
+                className={cn(
+                  "block w-8 h-1 rounded mb-1 transition-transform",
+                  isMenuOpen ? "transform rotate-45 translate-y-2" : "",
+                  isScrolled ? "bg-primary" : "bg-background"
+                )}
+              ></i>
+              <i
+                className={cn(
+                  `block w-8 h-1 rounded mb-1 transition-opacity`,
+                  isMenuOpen ? "opacity-0" : "",
+                  isScrolled ? "bg-primary" : "bg-background"
+                )}
+              ></i>
+              <i
+                className={cn(
+                  `block w-8 h-1 rounded transition-transform`,
+                  isMenuOpen ? "transform -rotate-45 -translate-y-2" : "",
+                  isScrolled ? "bg-primary" : "bg-background"
+                )}
+              ></i>
+            </button>
+          </div>
         </div>
 
         <div
@@ -96,16 +136,17 @@ export const Navbar = () => {
               isMenuOpen ? "open" : ""
             )}
           >
-            {navList.map(({ title, href }, index) => (
-              <li className="py-4" key={title + "-" + index}>
+            {navList.map(({ content, href, blank }, index) => (
+              <li className="py-4" key={"list-item-" + index}>
                 <Link
                   href={href}
                   className={cn(
                     `text-xl md:text-lg lg:text-xl hover:text-accent-variant`,
                     isScrolled ? "text-primary" : "text-foreground"
                   )}
+                  target={blank ? "_blank" : "_self"}
                 >
-                  {title}
+                  {content}
                 </Link>
               </li>
             ))}

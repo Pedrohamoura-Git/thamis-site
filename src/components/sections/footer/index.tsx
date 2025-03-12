@@ -1,6 +1,9 @@
+"use client";
+
 import { Button } from "@/components/ui";
-import { Logo } from "@/widgets";
-import { CalendarCheck2 } from "lucide-react";
+import { redirectToWhatsAppChat } from "@/utils";
+import { Instagram, Logo, Whatsapp } from "@/widgets";
+import { CalendarCheck2, Mail } from "lucide-react";
 import Link from "next/link";
 
 export const Footer = () => {
@@ -50,7 +53,31 @@ export const Footer = () => {
       <div>
         <h5 className="mb-2 text-base font-bold text-accent">Contato</h5>
 
-        <p>thamismoura@gmail.com</p>
+        <Link
+          className="mt-1 flex items-center"
+          href="mailto:thamismoura@gmail.com"
+          target="_blank"
+        >
+          <Mail strokeWidth={1} className="mr-2" width={20} height={20} />
+          thamismoura@gmail.com
+        </Link>
+        <Link
+          className="mt-1 flex items-center"
+          href="https://www.instagram.com/thamismmoura"
+          target="_blank"
+        >
+          <Instagram className="mr-2" width={20} height={20} />
+          @thamismmoura
+        </Link>
+        <Link
+          className="mt-1 flex items-center"
+          href=""
+          target="_blank"
+          onClick={() => redirectToWhatsAppChat({})}
+        >
+          <Whatsapp className="mr-2" width={20} height={20} />
+          19 99125-9896
+        </Link>
 
         <Button
           className="bg-btn-custom font-noto-sans animate-pulse-custom mt-8 w-48"
