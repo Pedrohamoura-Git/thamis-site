@@ -31,30 +31,6 @@ export default function RootLayout({
         className={`${inter.className} ${workdSans.className} antialiased scroll-smooth bg-foreground`}
       >
         <Navbar />
-
-        {/* <FloatingNavbar
-          navItems={[
-            {
-              name: "",
-              link: "/",
-              icon: <Logo width={40} height={40} />,
-            },
-            {
-              name: "Home",
-              link: "/",
-            },
-            {
-              name: "About",
-              link: "#about",
-            },
-            {
-              name: "Contact",
-              link: "/contact",
-            },
-          ]}
-          isVisibleAtTop
-          className="top-4 flex w-11/12 max-w-md justify-around gap-6 md:top-10"
-        /> */}
         {children}
       </body>
     </html>
