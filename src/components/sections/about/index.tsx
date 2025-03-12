@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 export const About = () => {
   return (
@@ -19,10 +22,16 @@ export const About = () => {
           <h2 className="text-[1.9rem] font-bold text-primary md:text-[2.1rem] lg:text-[2.5rem]">
             Thamis Maciel Moura
           </h2>
-          <h3 className="text-lg text-primary-foreground lg:pt-2 lg:text-xl">
-            Nutricionista CRN 3-66118
+          <h3 className="w-fit text-lg text-primary-foreground lg:pt-2 lg:text-xl">
+            <span>Nutricionista CRN 3-66118</span>
+            <motion.div
+              className="mb-5 mt-3 border-4 border-accent"
+              initial={{ width: "0%" }}
+              whileInView={{ width: "100%" }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, ease: "easeInOut" }}
+            />
           </h3>
-          <div className="mb-10 mt-3 w-1/2 border-4 border-accent" />
 
           <p className="font-inter text-[.95rem] text-primary lg:text-lg">
             Nutricionista especialista em Saúde da Família pela Escola de Saúde
