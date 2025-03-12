@@ -18,8 +18,8 @@ export const Traits = () => {
   ];
 
   return (
-    <section className="h-full w-screen bg-accent">
-      <ul className="p-4 md:flex md:justify-around">
+    <section className="h-full w-full bg-accent">
+      <ul className="m-auto p-4 md:flex md:h-[15vh] md:justify-around lg:max-w-screen-lg">
         {list.map(({ icon, title }, index) => (
           <li
             key={title + "-" + index}
