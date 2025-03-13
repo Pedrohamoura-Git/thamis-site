@@ -26,13 +26,19 @@ export const Footer = () => {
 
         <ul>
           <li className="my-2">
-            <Link href="/#hero">Inicio</Link>
+            <Link className="hover:text-accent-variant" href="/#hero">
+              Inicio
+            </Link>
           </li>
           <li className="my-2">
-            <Link href="/#about">Quem sou</Link>
+            <Link className="hover:text-accent-variant" href="/#about">
+              Quem sou
+            </Link>
           </li>
           <li className="my-2">
-            <Link href="/#plans">Consultas</Link>
+            <Link className="hover:text-accent-variant" href="/#plans">
+              Consultas
+            </Link>
           </li>
         </ul>
       </div>
@@ -55,13 +61,22 @@ export const Footer = () => {
 
         <div className="mt-1 flex items-center">
           <Link href="mailto:thamismoura@gmail.com" target="_blank">
-            <Mail strokeWidth={1} className="mr-2" width={20} height={20} />
+            <Mail
+              className="mr-2 hover:text-accent-variant"
+              strokeWidth={1}
+              width={20}
+              height={20}
+            />
           </Link>
           thamismoura@gmail.com
         </div>
         <div className="mt-1 flex items-center">
           <Link href="https://www.instagram.com/thamismmoura" target="_blank">
-            <Instagram className="mr-2" width={20} height={20} />
+            <Instagram
+              className="mr-2 hover:text-accent-variant"
+              width={20}
+              height={20}
+            />
           </Link>
           @thamismmoura
         </div>
@@ -71,7 +86,11 @@ export const Footer = () => {
             target="_blank"
             onClick={() => redirectToWhatsAppChat({})}
           >
-            <Whatsapp className="mr-2" width={20} height={20} />
+            <Whatsapp
+              className="mr-2 hover:text-accent-variant"
+              width={20}
+              height={20}
+            />
           </Link>
           19 99125-9896
         </div>
