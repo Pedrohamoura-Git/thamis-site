@@ -1,6 +1,6 @@
 export const plansContent = [
   {
-    description: "R$ 210,00",
+    description: "R$ 250,00",
     title: "Consulta Mensal",
     src: "/monthly-guidance.jpg",
     ctaText: "Saiba mais",
@@ -20,7 +20,7 @@ export const plansContent = [
     },
   },
   {
-    description: "R$ 630,00",
+    description: "R$ 700,00",
     title: "Consulta Trimestral",
     src: "/quartely-guidance.jpg",
     ctaText: "Saiba mais",
@@ -54,52 +54,7 @@ export const plansContent = [
     },
   },
   {
-    description: "R$ 262,50",
-    title: "Plano Alimentar Semanal",
-    src: "/coffe.jpg",
-    ctaText: "Saiba mais",
-    whatsAppMessage:
-      "Olá! Tudo bem? Tenho interesse no Plano Alimentar Semanal e gostaria de saber mais sobre como funciona.",
-    content: () => {
-      return (
-        <>
-          <p>Plano alimentar com 3 opções para cada refeição!</p>
-          <p>Te ajudo com:</p>
-          <ul className="list-inside list-disc">
-            <li>Emagrecimento</li>
-            <li>Ganho de massa</li>
-            <li>Diabetes</li>
-            <li>Hipertensão</li>
-            <li>Colesterol alto</li>
-            <li>Constipação</li>
-            <li>Outros</li>
-          </ul>
-        </>
-      );
-    },
-  },
-  {
-    description: "‌‌‌‌‌R$ 105,00",
-    title: "Bioimpedância",
-    src: "/weight-scale.jpg",
-    ctaText: "Saiba mais",
-    whatsAppMessage:
-      "Olá! Tudo bem? Tenho interesse na Bioimpedância e gostaria de saber mais sobre como funciona.",
-    content: () => {
-      return (
-        <ul className="list-inside list-disc">
-          <li>Exame realizado em consultório</li>
-          <li>Balança de última geração</li>
-          <li>Avaliação de parâmetros antropométricos (MEDIANA)</li>
-          <li>Percentual de gordura</li>
-          <li>Percentual de massa magra</li>
-          <li>Outros</li>
-        </ul>
-      );
-    },
-  },
-  {
-    description: "‌‌‌‌‌R$ 315,00",
+    description: "‌‌‌‌‌R$ 50,00",
     title: "Lista de Compras",
     src: "/grocery-shopping.jpg",
     ctaText: "Saiba mais",
