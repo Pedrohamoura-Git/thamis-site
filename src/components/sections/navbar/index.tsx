@@ -1,6 +1,7 @@
 "use client";
-import { useOutsideClick } from "@/hooks";
+import { useOutsideClick, useSmoothScroll } from "@/hooks";
 import { cn } from "@/lib/utils";
+import { getSectionInView } from "@/utils/getSectionInView";
 import { Instagram, Logo } from "@/widgets";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
@@ -8,7 +9,17 @@ import { useState, useEffect, useRef } from "react";
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean | null>(false);
+  const [activeSection, setActiveSection] = useState<string>("home");
   const ref = useRef<HTMLDivElement>(null);
+
+  const handleNavScroll = useSmoothScroll({
+    replaceHistory: true,
+    onScroll: (section) => {
+      setActiveSection(section);
+      setIsMenuOpen(false);
+    },
+  });
+
   const navList = [
     { content: "Inicio", href: "#home" },
     { content: "Sobre mim", href: "#about" },
@@ -34,9 +45,13 @@ export const Navbar = () => {
       } else {
         setIsScrolled(false);
       }
+
+      const activeSection = getSectionInView(["home", "about", "plans"]);
+      setActiveSection(activeSection);
     };
 
     window.addEventListener("scroll", handleScroll);
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -51,12 +66,16 @@ export const Navbar = () => {
       className={cn(
         "fixed w-full z-50 transition-all duration-400 ease-in-out",
         isMenuOpen ? " bg-muted-light" : "bg-transparent",
-        isScrolled && "bg-foreground"
+        isScrolled && "bg-foreground",
       )}
     >
       <div className="container mx-auto px-6 py-3 md:flex md:items-center md:justify-between md:px-12 md:py-0">
         <div className="flex items-center justify-between">
-          <Link href="#home" className="logo">
+          <Link
+            href="#home"
+            className="logo"
+            onClick={(e) => handleNavScroll(e, "#home")}
+          >
             <Logo
               width={40}
               height={40}
@@ -65,7 +84,7 @@ export const Navbar = () => {
                 "transition-all ease-linear",
                 isScrolled
                   ? "h-12 w-12 lg:h-16 lg:w-16"
-                  : "h-16 w-16 md:h-20 lg:h-24 md:w-20 lg:w-24"
+                  : "h-16 w-16 md:h-20 lg:h-24 md:w-20 lg:w-24",
               )}
             />
           </Link>
@@ -92,21 +111,21 @@ export const Navbar = () => {
                 className={cn(
                   "block w-8 h-1 rounded mb-1 transition-transform",
                   isMenuOpen ? "transform rotate-45 translate-y-2" : "",
-                  isScrolled ? "bg-primary" : "bg-background"
+                  isScrolled ? "bg-primary" : "bg-background",
                 )}
               ></i>
               <i
                 className={cn(
                   `block w-8 h-1 rounded mb-1 transition-opacity`,
                   isMenuOpen ? "opacity-0" : "",
-                  isScrolled ? "bg-primary" : "bg-background"
+                  isScrolled ? "bg-primary" : "bg-background",
                 )}
               ></i>
               <i
                 className={cn(
                   `block w-8 h-1 rounded transition-transform`,
                   isMenuOpen ? "transform -rotate-45 -translate-y-2" : "",
-                  isScrolled ? "bg-primary" : "bg-background"
+                  isScrolled ? "bg-primary" : "bg-background",
                 )}
               ></i>
             </button>
@@ -120,23 +139,34 @@ export const Navbar = () => {
           <ul
             className={cn(
               "nav-links mt-10 flex flex-col pb-5 items-end md:mt-0 md:flex-row md:space-x-8 md:p-0",
-              isMenuOpen ? "open" : ""
+              isMenuOpen ? "open" : "",
             )}
           >
-            {navList.map(({ content, href, blank }, index) => (
-              <li className="py-4" key={"list-item-" + index}>
-                <Link
-                  href={href}
-                  className={cn(
-                    `text-xl md:text-lg lg:text-xl hover:text-accent-variant`,
-                    isScrolled ? "text-primary" : "text-foreground"
-                  )}
-                  target={blank ? "_blank" : "_self"}
-                >
-                  {content}
-                </Link>
-              </li>
-            ))}
+            {navList.map(({ content, href, blank }, index) => {
+              const isActive =
+                href.startsWith("#") && activeSection === href.replace("#", "");
+
+              return (
+                <li className="py-4" key={"list-item-" + index}>
+                  <Link
+                    href={href}
+                    className={cn(
+                      `text-xl md:text-lg lg:text-xl transition-colors`,
+                      isActive ? "text-accent-variant" : "",
+                      !isActive && isScrolled ? "text-primary" : "",
+                      !isActive && !isScrolled ? "text-foreground" : "",
+                      "hover:text-accent-variant",
+                    )}
+                    target={blank ? "_blank" : "_self"}
+                    onClick={(e) => {
+                      if (!blank) handleNavScroll(e, href);
+                    }}
+                  >
+                    {content}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </div>
