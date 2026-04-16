@@ -110,7 +110,7 @@ export const ExpandableCard = ({ cardsContent }: ExpandableCardProps) => {
                       {active.title}
                     </motion.h3>
                     <motion.p
-                      layoutId={`description-${active.description}-${id}`}
+                      layoutId={`description-${active.description}-${id}-${Math.random}`}
                       className="text-primary"
                     >
                       {active.description}
