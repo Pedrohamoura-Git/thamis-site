@@ -60,34 +60,21 @@ export const ExpandableCard = ({ cardsContent }: ExpandableCardProps) => {
       <AnimatePresence>
         {active && typeof active === "object" ? (
           <div className="fixed inset-0 z-[100] grid place-items-center">
-            <motion.button
-              key={`button-${active.title}-${id}`}
-              layout
-              initial={{
-                opacity: 0,
-              }}
-              animate={{
-                opacity: 1,
-                transition: {
-                  delay: 0.5,
-                },
-              }}
-              exit={{
-                opacity: 0,
-                transition: {
-                  duration: 0.05,
-                },
-              }}
-              className="absolute right-2 top-40 flex h-6 w-6 items-center justify-center rounded-full bg-foreground lg:hidden"
-              onClick={() => setActive(null)}
-            >
-              <CloseIcon />
-            </motion.button>
             <motion.div
               layoutId={`card-${active.title}-${id}`}
               ref={ref}
-              className="flex h-fit w-11/12 max-w-[500px] flex-col overflow-hidden rounded-lg bg-foreground dark:bg-neutral-900 sm:rounded-3xl md:h-fit md:max-h-[90%]"
+              className="relative flex h-fit w-11/12 max-w-[500px] flex-col overflow-hidden rounded-lg bg-foreground dark:bg-neutral-900 sm:rounded-3xl md:h-fit md:max-h-[90%]"
             >
+              <motion.button
+                key={`button-${active.title}-${id}`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1, transition: { delay: 0.3 } }}
+                exit={{ opacity: 0, transition: { duration: 0.05 } }}
+                className="absolute right-2 top-2 z-10 flex h-6 w-6 items-center justify-center rounded-full bg-white/80 lg:hidden"
+                onClick={() => setActive(null)}
+              >
+                <CloseIcon />
+              </motion.button>
               <motion.div layoutId={`image-${active.title}-${id}`}>
                 <Image
                   priority
@@ -157,8 +144,9 @@ export const ExpandableCard = ({ cardsContent }: ExpandableCardProps) => {
             <motion.div className="group/bento row-span-1 flex h-40 w-full flex-row items-center justify-between rounded-xl border border-black/5 bg-foreground p-1 shadow-xl transition duration-200 dark:border-white/[0.2] dark:bg-black md:px-2">
               <motion.div layoutId={`image-${card.title}-${id}`}>
                 <Image
-                  width={200}
-                  height={200}
+                  priority
+                  width={500}
+                  height={500}
                   src={card.src}
                   alt={card.title}
                   className="h-36 w-40 rounded-lg object-cover object-top md:h-36 md:w-36"
