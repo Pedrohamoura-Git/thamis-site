@@ -110,7 +110,7 @@ export const ExpandableCard = ({ cardsContent }: ExpandableCardProps) => {
                       {active.title}
                     </motion.h3>
                     <motion.p
-                      layoutId={`description-${active.description}-${id}-${Math.random}`}
+                      layoutId={`description-${active.title}-${id}`}
                       className="text-primary"
                     >
                       {active.description}
@@ -173,7 +173,7 @@ export const ExpandableCard = ({ cardsContent }: ExpandableCardProps) => {
                   {card.title}
                 </motion.h3>
                 <motion.p
-                  layoutId={`description-${card.description}-${id}-${Math.random}`}
+                  layoutId={`description-${card.title}-${id}`}
                   className="text-center text-primary md:text-lg"
                 >
                   {card.description}
